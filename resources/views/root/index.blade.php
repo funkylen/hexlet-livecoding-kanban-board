@@ -1,51 +1,31 @@
 @extends('layouts.app')
 
+@push('scripts')
+    @vite(['resources/js/root/index.js'])
+@endpush
+
 @section('content')
     <div class="row gx-5" style="min-height: 100vh">
-        <div class="col">
-            <x-column title="To Do">
+        @foreach($columns as $column)
 
-                <x-slot:cards>
-                    @foreach([1,2,3] as $id)
-                        <x-card :id="$id" :title="'Task' . $id" :description="'Hello' . $id"/>
-                    @endforeach
-                </x-slot:cards>
+            <div class="col">
 
-                <x-slot:buttons>
-                    @include('components.add-card')
-                </x-slot:buttons>
+                <x-column :id="$column->id" :title="$column->title">
 
-            </x-column>
-        </div>
+                    <x-slot:cards>
+                        @foreach($column->cards as $card)
+                            <x-card :id="$card->id" :title="$card->title" :description="$card->description"/>
+                        @endforeach
+                    </x-slot:cards>
 
-        <div class="col">
-            <x-column title="In Progress">
-                <x-slot:cards>
-                    @foreach([4,5,6] as $id)
-                        <x-card :id="$id" :title="'Task' . $id" :description="'Hello' . $id"/>
-                    @endforeach
-                </x-slot:cards>
+                    <x-slot:buttons>
+                        <x-add-card :column-id="$column->id"/>
+                    </x-slot:buttons>
 
-                <x-slot:buttons>
-                    @include('components.add-card')
-                </x-slot:buttons>
+                </x-column>
 
-            </x-column>
-        </div>
+            </div>
 
-        <div class="col">
-            <x-column title="Done">
-                <x-slot:cards>
-                    @foreach([7,8,9] as $id)
-                        <x-card :id="$id" :title="'Task' . $id" :description="'Hello' . $id"/>
-                    @endforeach
-                </x-slot:cards>
-
-                <x-slot:buttons>
-                    @include('components.add-card')
-                </x-slot:buttons>
-
-            </x-column>
-        </div>
+        @endforeach
     </div>
 @endsection

@@ -6,19 +6,20 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Column extends Component
+class AddCard extends Component
 {
     public function __construct(
-        private readonly string $title,
-        private readonly string $id,
+        private readonly int $columnId,
     ) {
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     */
     public function render(): View|Closure|string
     {
-        return view('components.column', [
-            'title' => $this->title,
-            'id' => $this->id,
+        return view('components.add-card', [
+            'columnId' => $this->columnId,
         ]);
     }
 }

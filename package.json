@@ -11,6 +11,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "jquery": "^3.7.0",
         "sortablejs": "^1.15.0"
     }
 }
