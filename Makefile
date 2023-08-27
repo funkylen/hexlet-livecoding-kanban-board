@@ -1,4 +1,5 @@
 install:
+	cp .env.local .env
 	composer install
 	npm run build
 	touch database.sqlite
