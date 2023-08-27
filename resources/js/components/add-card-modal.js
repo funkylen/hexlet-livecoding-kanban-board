@@ -13,7 +13,7 @@ if (modal) {
 
         const input = $('#add-card-modal--column-id');
         input.val(columnId);
-    })
+    });
 
     $('#add-card-form').on('submit', (event) => {
         /**
@@ -69,12 +69,21 @@ if (modal) {
                 card.show();
             }
 
+            /**
+            * Чистим поля формы
+            */
             columnIdEl.val(null);
             titleEl.val(null);
             descriptionEl.val(null);
-            const modal2 = new bootstrap.Modal('#add-card-modal');
-            console.log(modal2)
-            modal2.hide();
+
+            /**
+             * NOTE: Исправленный код по скрытию модального окна
+             * jQuery не срабатыает скорее всего по причине того, что он полностью выпилен из Bootstrap :(
+             * Код new bootstrap.Modal(modal).hide() работает, но его проблема в том, что он создаёт новый элемент, который сразу прячет
+             * Код ниже получает конкретный открытый элемент и работает уже с ним
+             * Документация не говорит об этом напрямую, но если прочитать подробно что делает каждый доступный метод, становится понятно
+             */
+            bootstrap.Modal.getInstance(modal).hide();
         });
 
         // TODO: Обработка ошибки
