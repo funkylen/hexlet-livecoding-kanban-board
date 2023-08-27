@@ -16,7 +16,22 @@ $('.drag-items').each(function() {
         animation: 150,
         draggable: '.card',
         onEnd: function(e) {
-            console.log(e.item.dataset);
+            // Находим ID колонки куда переместилась карточка
+            const columnId = $(e.to).parent().data('id');
+            // Берём ID карточки
+            const cardId = $(e.item).data('id');
+            // Если всё есть, то отправляем AJAX запрос на изменение карточки (в тело запроса кладём ID колонки)
+            if (columnId && cardId) {
+                const body = {
+                    column_id: columnId,
+                };
+
+                $.ajax({
+                    url: "/api/cards/" + cardId,
+                    method: "PATCH",
+                    data: body,
+                });
+            }
         }
     });
 });

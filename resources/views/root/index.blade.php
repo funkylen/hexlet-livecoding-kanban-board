@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@push('scripts')
-    @vite(['resources/js/root/index.js'])
-@endpush
-
 @section('content')
     <div class="row gx-5" style="min-height: 100vh">
         @foreach($columns as $column)
@@ -18,14 +14,21 @@
                         @endforeach
                     </x-slot:cards>
 
-                    <x-slot:buttons>
-                        <x-add-card :column-id="$column->id"/>
-                    </x-slot:buttons>
-
                 </x-column>
 
             </div>
 
         @endforeach
     </div>
+
+    <div id="templates" class="d-none">
+
+        <x-card />
+
+    </div>
 @endsection
+
+@push('modals')
+    @include('components.add-card-modal')
+    @include('components.card-modal')
+@endpush

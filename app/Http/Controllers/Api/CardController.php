@@ -10,6 +10,13 @@ use Illuminate\Http\Response;
 
 class CardController extends Controller
 {
+    public function show(Card $card): JsonResponse
+    {
+        $card->load('column');
+
+        return response()->json($card);
+    }
+
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([

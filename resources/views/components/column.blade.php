@@ -9,7 +9,9 @@
 
     <div class="buttons">
 
-        {{ $buttons ?? null }}
+        @include('components.add-card-btn', [
+            'columnId' => $id,
+        ])
 
     </div>
 </div>

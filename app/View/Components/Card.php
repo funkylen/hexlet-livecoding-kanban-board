@@ -9,9 +9,9 @@ use Illuminate\View\Component;
 class Card extends Component
 {
     public function __construct(
-        private readonly string $id,
-        private readonly string $title,
-        private readonly string $description,
+        private readonly ?string $id = null,
+        private readonly ?string $title = null,
+        private readonly ?string $description = null,
     ) {
     }
 

@@ -12,6 +12,13 @@ class CardTest extends TestCase
     use RefreshDatabase;
 
     private $columns;
+    private $card;
+
+    public function testShow(): void
+    {
+        $response = $this->getJson(route('api.cards.show', $this->card));
+        $response->assertOk();
+    }
 
     public function testStore(): void
     {
@@ -64,5 +71,6 @@ class CardTest extends TestCase
         parent::setUp();
 
         $this->columns = Column::factory()->count(2)->create();
+        $this->card = Card::factory()->for($this->columns->first())->create();
     }
 }

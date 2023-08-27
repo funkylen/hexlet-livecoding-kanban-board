@@ -6,11 +6,15 @@
 
 import axios from 'axios';
 import jquery from 'jquery';
+import * as bootstrap from 'bootstrap';
+import * as Popper from '@popperjs/core';
 
 window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-window.$ = jquery;
+window.$ = window.jQuery = jquery;
+window.Popper = Popper;
+window.bootstrap = bootstrap;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

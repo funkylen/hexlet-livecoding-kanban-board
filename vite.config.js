@@ -8,6 +8,8 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/root/index.js',
+                'resources/js/components/add-card-modal.js',
+                'resources/js/components/card-modal.js',
             ],
             refresh: true,
         }),
